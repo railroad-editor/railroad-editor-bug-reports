@@ -1,0 +1,22 @@
+{
+  "name": "railroad-editor-bug-reports",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/railroad-editor/railroad-editor-bug-reports.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/railroad-editor/railroad-editor-bug-reports/issues"
+  },
+  "homepage": "https://github.com/railroad-editor/railroad-editor-bug-reports#readme",
+  "dependencies": {
+    "@octokit/rest": "^16.27.0"
+  }
+}
