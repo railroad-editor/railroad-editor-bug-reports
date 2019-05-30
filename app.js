@@ -35,7 +35,7 @@ exports.lambdaHandler = async (event, context) => {
       repo: 'railroad-editor-bug-reports',
       title: title,
       body: body,
-      labels: [label]
+      labels: label ? [label]: null
     })
   } catch (err) {
     console.error(err);
