@@ -17,6 +17,10 @@ exports.lambdaHandler = async (event, context) => {
   if (! title) {
     return {
       'statusCode': 400,
+      'headers': {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
       'body': JSON.stringify({
         error: 'Failed to create issue.',
         reason: 'Title cannot be null.'
@@ -37,6 +41,10 @@ exports.lambdaHandler = async (event, context) => {
     console.error(err);
     return {
       'statusCode': 500,
+      'headers': {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
       'body': JSON.stringify({
           error: 'Failed to create issue.',
           reason: err
@@ -47,6 +55,10 @@ exports.lambdaHandler = async (event, context) => {
 
   console.info(octoResponse)
   return {
-    'statusCode': 204
+    'statusCode': 204,
+    'headers': {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    },
   }
 };
