@@ -1,15 +1,11 @@
 const Octokit = require('@octokit/rest')
 
-// Get Github personal token from env
-const TOKEN = process.env.TOKEN
-
-
 exports.lambdaHandler = async (event, context) => {
-  // console.log(event)
+  // console.log(process.env.TOKEN)
 
-  // Initialize Github API client
+  // Initialize Github API client with a personal token from env
   const octokit = new Octokit({
-    auth: TOKEN
+    auth: process.env.TOKEN
   })
 
   // Parse request body
