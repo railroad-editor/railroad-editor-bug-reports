@@ -5,15 +5,28 @@ const TOKEN = process.env.TOKEN
 
 
 exports.lambdaHandler = async (event, context) => {
+  // console.log(event)
+
+  // Initialize Github API client
   const octokit = new Octokit({
     auth: TOKEN
   })
 
-  // console.log(event)
+  // Parse request body
   const eventBody = JSON.parse(event.body)
   const title = eventBody.title
   const body  = eventBody.body
   const label = eventBody.label
+
+  if (! title) {
+    return {
+      'statusCode': 400,
+      'body': JSON.stringify({
+        error: 'Failed to create issue.',
+        reason: 'Title cannot be null.'
+      })
+    }
+  }
 
   let octoResponse
   try {
@@ -25,14 +38,19 @@ exports.lambdaHandler = async (event, context) => {
       labels: [label]
     })
   } catch (err) {
-    console.error('Failed to create issue!')
-    console.log(err);
-    return err;
+    console.error(err);
+    return {
+      'statusCode': 500,
+      'body': JSON.stringify({
+          error: 'Failed to create issue.',
+          reason: err
+        }
+      )
+    }
   }
 
-  console.error('Created issue.')
+  console.info(octoResponse)
   return {
-    'statusCode': 200,
-    'body': octoResponse
+    'statusCode': 204
   }
 };
